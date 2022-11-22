@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./src:/src
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=postgres
+      - SECRET_KEY=django-insecure-&=#+f(j(hxk+#z0a@k_ykd$a01sg2^ty45(p@&(-6)mztxy8eb
+      - DEBUG_MODE=True
+    depends_on:
+      - db
