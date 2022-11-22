@@ -1,2 +1,1 @@
-# django_postgresql_boilerplate
-# Django + Docker + PostgreSQL Boilerplate to use in my projects
+# Django + Docker + PostgreSQL + Pipenv - Boilerplate to use in my projects
